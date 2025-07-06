@@ -10,3 +10,13 @@
 - Use browser router > add routes > route=/ > add children routes
 - Add outlet component in the body to render children routes
 - Create a footer
+- Create a login page
+- Install axios
+- Add the cors middleware
+- True withcredential in axios to receive token in cookies
+- Install redux toolkit
+- Create user slice and add some actions in it
+- Install redux devtool extention
+- Login and see if data store in redux store
+- Navbar should update as soon as user logged in
+- Refactor our code to add constants file and create component folder
