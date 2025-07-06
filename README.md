@@ -19,4 +19,4 @@
 - Install redux devtool extention
 - Login and see if data store in redux store
 - Navbar should update as soon as user logged in
-- Refactor our code to add constants file + create component folder
+- Refactor our code to add constants file and create component folder
