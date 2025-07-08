@@ -20,3 +20,7 @@
 - Login and see if data store in redux store
 - Navbar should update as soon as user logged in
 - Refactor our code to add constants file and create component folder
+- You should not access other routes without login
+- If token is not present redirect user to login page
+- Logout Feature
+-

@@ -6,11 +6,11 @@ import { BASE_URL } from "../utils/constants";
 import { addUser } from "../utils/userSlice";
 
 const Login = () => {
-  const [emailId, setEmailId] = useState("hamza123@gmail.com");
-  const [password, setPassword] = useState("Hamza@123");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const [emailId, setEmailId] = useState("hamza123@gmail.com");
+  const [password, setPassword] = useState("Hamza@123");
+  const [errorMessage, setErrorMessage] = useState("");
   const handleLogin = async () => {
     try {
       const res = await axios.post(
@@ -24,6 +24,9 @@ const Login = () => {
       dispatch(addUser(res.data));
       navigate("/");
     } catch (error) {
+      console.log("errpr", error.response.data);
+
+      setErrorMessage(error.response.data.error);
       console.error(error);
     }
   };
@@ -51,6 +54,7 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </fieldset>
+            <p className="text-red-500 text-center">{errorMessage}</p>
           </div>
           <div className="card-actions justify-center">
             <button className="btn btn-primary" onClick={handleLogin}>
