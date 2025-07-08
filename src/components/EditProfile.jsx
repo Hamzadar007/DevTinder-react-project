@@ -7,6 +7,8 @@ import { addUser } from "../utils/userSlice";
 
 const EditProfile = () => {
   const user = useSelector((state) => state.user);
+
+  if (!user) return null;
   const dispatch = useDispatch();
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);

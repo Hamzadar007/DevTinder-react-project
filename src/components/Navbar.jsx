@@ -21,7 +21,14 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-200 shadow-lg">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">DevTinder</a>
+        <a
+          className="btn btn-ghost text-xl"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          DevTinder
+        </a>
       </div>
       <div className="flex gap-2">
         {user && (
@@ -54,7 +61,13 @@ const Navbar = () => {
                 </a>
               </li>
               <li>
-                <a>Settings</a>
+                <a
+                  onClick={() => {
+                    navigate("/connections");
+                  }}
+                >
+                  Connections
+                </a>
               </li>
               <li>
                 <a onClick={handleLogout}>Logout</a>
