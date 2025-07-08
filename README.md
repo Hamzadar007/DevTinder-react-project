@@ -23,4 +23,5 @@
 - You should not access other routes without login
 - If token is not present redirect user to login page
 - Logout Feature.
--
+- Get feed and add the feed in the store
+- Show feed card on feed screen
