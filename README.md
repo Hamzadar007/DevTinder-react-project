@@ -25,3 +25,4 @@
 - Logout Feature.
 - Get feed and add the feed in the store
 - Show feed card on feed screen
+- Edit profile and also update user slice to show updated info throughout the app
