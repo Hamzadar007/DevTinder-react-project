@@ -29,11 +29,23 @@ const Connections = () => {
     fetchConnections();
   }, []);
   return (
-    <div className="flex flex-col gap-2 items-center my-10 mb-65">
-      <h1 className="text-bold text-2xl">Connections</h1>
-      {connection?.map((con) => (
-        <FeedCard user={con} fromEditProfile={true} />
-      ))}
+    <div className="my-10">
+      <h1 className="text-2xl ml-4">Connections</h1>
+      <div className="flex">
+        {connection?.map((con) => (
+          <div className="flex m-4 p-4 rounded-lg bg-base-300 flex-1">
+            <div>
+              <img className="w-20 h-20 rounded-full" src={con?.avatar} />
+            </div>
+            <div className="ml-2">
+              <h2 className="text-3xl text-orange-700">
+                {con.firstName + " " + con?.lastName}
+              </h2>
+              <p>{con?.about}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

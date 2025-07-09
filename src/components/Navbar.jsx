@@ -70,6 +70,15 @@ const Navbar = () => {
                 </a>
               </li>
               <li>
+                <a
+                  onClick={() => {
+                    navigate("/requests");
+                  }}
+                >
+                  Requests
+                </a>
+              </li>
+              <li>
                 <a onClick={handleLogout}>Logout</a>
               </li>
             </ul>
