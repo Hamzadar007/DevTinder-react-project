@@ -29,3 +29,4 @@
 - Add connection screen make api call store data in connection slice and show list of connections
 - New page - See all my connection requests
 - Connection requests approve or reject implemented
+- Send user connection or ignore functionality implemented in feed

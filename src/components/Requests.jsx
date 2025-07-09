@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addRequests } from "../utils/requestSlice";
@@ -8,6 +8,8 @@ const Requests = () => {
   const dispatch = useDispatch();
   const requests = useSelector((state) => state.requests);
   const user = useSelector((state) => state.user);
+  const [isRequestAccepted, setIsRequestAccepted] = useState(false);
+  const [isRequestRejected, setIsRequestRejected] = useState(false);
   const fetchrequests = async () => {
     try {
       const res = await axios.get(
@@ -31,6 +33,17 @@ const Requests = () => {
         { withCredentials: true }
       );
       if (res) {
+        if (status === "accepted") {
+          setIsRequestAccepted(true);
+          setTimeout(() => {
+            setIsRequestAccepted(false);
+          }, 1000);
+        } else {
+          setIsRequestRejected(true);
+          setTimeout(() => {
+            setIsRequestRejected(false);
+          }, 1000);
+        }
         let filteredRequests = requests.filter((req) => req._id != id);
         dispatch(addRequests(filteredRequests));
       }
@@ -41,17 +54,15 @@ const Requests = () => {
     fetchrequests();
   }, []);
 
-  if (!requests || requests?.length === 0) {
-    return (
-      <h2 className="flex justify-center mt-10 text-2xl">
-        No connection requests
-      </h2>
-    );
-  }
-
   return (
     <div className="my-10">
       <h1 className="text-2xl ml-4">Connection Requests</h1>
+      {!requests ||
+        (requests?.length === 0 && (
+          <h2 className="flex justify-center mt-10 text-2xl">
+            No connection requests
+          </h2>
+        ))}
       <div className="flex">
         {requests?.map((req) => (
           <div
@@ -86,6 +97,21 @@ const Requests = () => {
             </div>
           </div>
         ))}
+
+        {isRequestRejected && (
+          <div className="toast toast-top toast-center">
+            <div className="alert alert-error">
+              <span>Requests rejected</span>
+            </div>
+          </div>
+        )}
+        {isRequestAccepted && (
+          <div className="toast toast-top toast-center">
+            <div className="alert alert-success">
+              <span>Request accept successfully.</span>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

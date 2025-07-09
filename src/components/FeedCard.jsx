@@ -1,7 +1,7 @@
 import React from "react";
 
-const FeedCard = ({ user, fromEditProfile }) => {
-  const { firstName, lastName, age, gender, avatar, about } = user;
+const FeedCard = ({ user, fromEditProfile, sendOrIgnoreUser }) => {
+  const { firstName, lastName, age, gender, avatar, about, _id } = user;
 
   return (
     <div className="" key={firstName}>
@@ -13,8 +13,16 @@ const FeedCard = ({ user, fromEditProfile }) => {
           {about && <p>{about}</p>}
           {!fromEditProfile && (
             <div className="card-actions">
-              <button className="btn btn-secondary flex flex-1">Ignore</button>
-              <button className="btn btn-primary flex flex-1">
+              <button
+                className="btn btn-secondary flex flex-1"
+                onClick={() => sendOrIgnoreUser?.("ignored", _id)}
+              >
+                Ignore
+              </button>
+              <button
+                className="btn btn-primary flex flex-1"
+                onClick={() => sendOrIgnoreUser?.("interested", _id)}
+              >
                 Interested
               </button>
             </div>

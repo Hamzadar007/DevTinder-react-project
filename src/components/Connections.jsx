@@ -32,7 +32,10 @@ const Connections = () => {
       <h1 className="text-2xl ml-4">Connections</h1>
       <div className="lg:flex sm:mb-65">
         {connection?.map((con) => (
-          <div className="lg:flex m-4 p-4 rounded-lg bg-base-300 lg:flex-1">
+          <div
+            key={con?._id}
+            className="lg:flex m-4 p-4 rounded-lg bg-base-300 lg:flex-1"
+          >
             <div>
               <img className="w-20 h-20 rounded-full" src={con?.avatar} />
             </div>
