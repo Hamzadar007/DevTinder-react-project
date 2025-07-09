@@ -28,3 +28,4 @@
 - Edit profile and also update user slice to show updated info throughout the app
 - Add connection screen make api call store data in connection slice and show list of connections
 - New page - See all my connection requests
+- Connection requests approve or reject implemented

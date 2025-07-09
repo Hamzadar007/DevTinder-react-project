@@ -16,14 +16,13 @@ const Connections = () => {
           withCredentials: true,
         }
       );
-      console.log("response === ", res.data.message);
+
       dispatch(addConnection(res.data.message));
       //   console.log("response === ", res);
     } catch (error) {
       console.log("error", error);
     }
   };
-  console.log("connections == ", connection);
 
   useEffect(() => {
     fetchConnections();
@@ -31,9 +30,9 @@ const Connections = () => {
   return (
     <div className="my-10">
       <h1 className="text-2xl ml-4">Connections</h1>
-      <div className="flex">
+      <div className="lg:flex sm:mb-65">
         {connection?.map((con) => (
-          <div className="flex m-4 p-4 rounded-lg bg-base-300 flex-1">
+          <div className="lg:flex m-4 p-4 rounded-lg bg-base-300 lg:flex-1">
             <div>
               <img className="w-20 h-20 rounded-full" src={con?.avatar} />
             </div>
