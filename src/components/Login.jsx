@@ -9,7 +9,11 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [emailId, setEmailId] = useState("hamza123@gmail.com");
+  const [userName, setUserName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("Hamza@123");
+  const [isSignUp, setIsSignUp] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const handleLogin = async () => {
     try {
@@ -31,6 +35,32 @@ const Login = () => {
     }
   };
 
+  const handleSignUp = async () => {
+    try {
+      setErrorMessage("");
+      setIsSignUp(true);
+
+      if (!isSignUp) return;
+      const res = await axios.post(
+        `${BASE_URL}/signup`,
+        {
+          email: emailId,
+          password,
+          firstName,
+          lastName,
+          username: userName,
+        },
+        { withCredentials: true }
+      );
+      setIsSignUp(false);
+    } catch (error) {
+      console.log("errpr", error.response.data);
+
+      setErrorMessage(error.response.data.error);
+      console.error(error);
+    }
+  };
+
   return (
     <div className="flex justify-center items-center mt-10">
       <div className="card bg-base-300 w-96 shadow-sm">
@@ -38,6 +68,31 @@ const Login = () => {
           <h2 className="card-title">Login</h2>
           <div>
             <fieldset className="fieldset  rounded-box w-xs border p-4 border-base-300">
+              {isSignUp && (
+                <>
+                  <label className="label">User Name</label>
+                  <input
+                    type="text"
+                    className="input"
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
+                  />
+                  <label className="label">First Name</label>
+                  <input
+                    type="text"
+                    className="input"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                  />
+                  <label className="label">Last Name</label>
+                  <input
+                    type="text"
+                    className="input"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                  />
+                </>
+              )}
               <label className="label">Email ID</label>
               <input
                 type="text"
@@ -57,8 +112,13 @@ const Login = () => {
             <p className="text-red-500 text-center">{errorMessage}</p>
           </div>
           <div className="card-actions justify-center">
-            <button className="btn btn-primary" onClick={handleLogin}>
-              Login
+            {!isSignUp && (
+              <button className="btn btn-primary" onClick={handleLogin}>
+                Login
+              </button>
+            )}
+            <button className="btn btn-secondary" onClick={handleSignUp}>
+              SignUp
             </button>
           </div>
         </div>

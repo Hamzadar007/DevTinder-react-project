@@ -30,3 +30,4 @@
 - New page - See all my connection requests
 - Connection requests approve or reject implemented
 - Send user connection or ignore functionality implemented in feed
+- Feature : Signup feature implemented using login form
